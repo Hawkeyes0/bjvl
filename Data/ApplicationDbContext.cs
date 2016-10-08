@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Net.Bjvl.Models;
 using WebApplication.Models;
 
 namespace WebApplication.Data
@@ -21,6 +22,13 @@ namespace WebApplication.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+            builder.Entity<Article>().HasOne<Category>(e => e.Category);
         }
+
+        public virtual DbSet<Config> Configs {get;set;}
+
+        public virtual DbSet<Category> Categories {get;set;}
+
+        public virtual DbSet<Article> Articles {get;set;}
     }
 }
